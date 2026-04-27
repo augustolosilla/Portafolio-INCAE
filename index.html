@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UNexus — Portafolio · Digital Business Intelligence · INCAE 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red:       #C70B00;
+      --red-dark:  #9e0900;
+      --black:     #000000;
+      --near-black:#0d0d0d;
+      --dark:      #141414;
+      --dark2:     #1c1c1c;
+      --gray-dark: #3D3D3D;
+      --gray-mid:  #A0A0A0;
+      --gray-light:#E9EAEA;
+      --white:     #FFFFFF;
+      --mustard:   #E8B113;
+      --surface-2: var(--dark);
+      --card-bg:   rgba(255,255,255,0.03);
+      --border:    rgba(255,255,255,0.08);
+      --border-red:rgba(199,11,0,0.3);
+      --font: 'Montserrat', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--near-black);
+      color: var(--white);
+      font-family: var(--font);
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+
+    /* ══ NAV ══ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 64px;
+      background: var(--black);
+      border-bottom: 1px solid rgba(199,11,0,0.25);
+    }
+
+    .nav-brand { display: flex; align-items: center; gap: 0.9rem; }
+
+    .nav-isologo { width: 32px; height: 32px; flex-shrink: 0; }
+
+    .nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
+
+    .nav-unexus {
+      font-size: 1rem; font-weight: 900; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--white);
+    }
+    .nav-unexus span { color: var(--red); }
+
+    .nav-sub {
+      font-size: 0.5rem; font-weight: 500; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gray-mid); margin-top: 1px;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gray-mid);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+
+    .nav-right { display: flex; align-items: center; gap: 0.7rem; }
+
+    .nav-badge {
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; background: var(--red);
+      color: var(--white); padding: 0.3rem 0.7rem; border-radius: 1px;
+    }
+
+    .nav-incae {
+      font-size: 0.58rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gray-mid);
+      border: 1px solid var(--border); padding: 0.3rem 0.7rem;
+    }
+
+    /* ══ HERO ══ */
+    #portada {
+      min-height: 100vh;
+      background: var(--black);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative; overflow: hidden;
+    }
+
+    .hero-left-panel {
+      background: var(--black);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 9rem 3.5rem 4rem;
+      position: relative; z-index: 2;
+    }
+
+    .hero-right-panel {
+      background: var(--red);
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+      padding: 9rem 3rem 4rem;
+      position: relative;
+      clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .hero-u-deco {
+      position: absolute; right: -80px; bottom: -60px;
+      width: 320px; height: 320px; opacity: 0.07;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 1.4rem;
+      animation: fadeUp 0.5s ease both;
+    }
+    .hero-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--red); }
+
+    h1 {
+      font-size: clamp(3.8rem, 7vw, 7rem);
+      font-weight: 900; line-height: 0.92;
+      letter-spacing: -0.02em; text-transform: uppercase;
+      margin-bottom: 1.8rem;
+      animation: fadeUp 0.6s 0.08s ease both;
+    }
+    h1 .u { color: var(--red); }
+    h1 .nexus { color: var(--white); display: block; }
+
+    .hero-desc {
+      font-size: 0.92rem; font-weight: 400; color: rgba(255,255,255,0.6);
+      max-width: 400px; line-height: 1.75; margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.16s ease both;
+    }
+
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--red); color: var(--white);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 0.85rem 1.6rem; transition: background 0.2s;
+      animation: fadeUp 0.6s 0.22s ease both;
+    }
+    .hero-cta:hover { background: var(--red-dark); }
+    .hero-cta::after { content: '→'; }
+
+    .hero-meta-stack {
+      display: flex; flex-direction: column; gap: 1.4rem;
+      animation: fadeUp 0.6s 0.12s ease both;
+    }
+
+    .hero-meta-item { border-left: 2px solid rgba(255,255,255,0.3); padding-left: 1rem; }
+    .hero-meta-label {
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.25rem;
+    }
+    .hero-meta-value { font-size: 0.88rem; font-weight: 600; color: var(--white); }
+
+    .hero-stat-row {
+      display: flex; gap: 2rem; margin-top: 3rem;
+      padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    .hero-stat-num {
+      font-size: 2.4rem; font-weight: 900; color: var(--white);
+      line-height: 1; display: block;
+    }
+    .hero-stat-label {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.2rem;
+    }
+
+    .systems-row { display: flex; gap: 0.6rem; margin-top: 2rem; }
+    .sys-pill {
+      background: rgba(255,255,255,0.12); color: var(--white);
+      border: 1px solid rgba(255,255,255,0.25);
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 0.4rem 0.8rem;
+    }
+
+    /* ══ SECTION BASE ══ */
+    section { padding: 6rem 2.5rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-eyebrow {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--red); margin-bottom: 0.8rem;
+    }
+    .section-eyebrow::before { content: ''; width: 20px; height: 2px; background: var(--red); }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+      text-transform: uppercase; line-height: 1.0;
+      letter-spacing: -0.01em; margin-bottom: 0.5rem;
+    }
+
+    .h2-sub {
+      font-size: 0.95rem; font-weight: 400; color: var(--gray-mid);
+      max-width: 620px; margin-bottom: 3rem; line-height: 1.7;
+    }
+
+    p { margin-bottom: 1rem; font-size: 0.93rem; line-height: 1.78; }
+
+    /* ══ INTRODUCCIÓN ══ */
+    #introduccion { background: var(--dark); }
+
+    .intro-layout {
+      display: grid; grid-template-columns: 1.3fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+
+    .intro-text p:first-of-type::first-letter {
+      float: left; font-size: 4.2rem; font-weight: 900;
+      line-height: 0.72; color: var(--red);
+      margin-right: 0.1rem; padding-top: 0.05rem; text-transform: uppercase;
+    }
+
+    .role-banner {
+      border-left: 4px solid var(--red);
+      background: rgba(199,11,0,0.06);
+      padding: 1.4rem 1.6rem; margin: 1.8rem 0;
+    }
+    .role-banner-label {
+      font-size: 0.58rem; font-weight: 800; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem;
+    }
+    .role-banner p { font-size: 0.9rem; margin-bottom: 0; color: rgba(255,255,255,0.85); }
+
+    .highlight-box {
+      border-left: 4px solid var(--white);
+      background: rgba(255,255,255,0.04);
+      padding: 1.2rem 1.5rem; margin: 1.5rem 0;
+    }
+    .highlight-box p { font-size: 0.9rem; margin-bottom: 0; }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.8rem; }
+    .tag {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; background: transparent;
+      color: var(--gray-mid); border: 1px solid var(--border);
+      padding: 0.25rem 0.65rem;
+    }
+
+    .info-stack { display: flex; flex-direction: column; gap: 0; }
+    .info-card {
+      border: 1px solid var(--border); border-top: none;
+      padding: 1.1rem 1.3rem; background: var(--card-bg);
+      transition: background 0.2s;
+    }
+    .info-card:first-child { border-top: 1px solid var(--border); }
+    .info-card:hover { background: rgba(199,11,0,0.05); }
+    .info-card-label {
+      font-size: 0.56rem; font-weight: 800; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--red); margin-bottom: 0.35rem;
+    }
+    .info-card-value { font-size: 0.86rem; font-weight: 500; color: var(--white); }
+
+    /* ══ PILLARS + AUDIENCIA  (dentro de una sola sección visual) ══ */
+    #cierre { background: var(--black); }
+
+    hr.divider {
+      border: none; border-top: 1px solid var(--border); margin: 4rem 0;
+    }
+
+    .pillars-label {
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 900;
+      text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 0.4rem;
+    }
+    .pillars-sub {
+      font-size: 0.88rem; color: var(--gray-mid); margin-bottom: 1.6rem; line-height: 1.7;
+    }
+
+    .pillars {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .pillar {
+      background: var(--near-black); padding: 1.8rem;
+      transition: background 0.2s;
+    }
+    .pillar:hover { background: rgba(199,11,0,0.05); }
+
+    .pillar-num {
+      font-size: 2.8rem; font-weight: 900; color: var(--red);
+      line-height: 1; margin-bottom: 0.8rem; opacity: 0.3;
+    }
+    .pillar-title {
+      font-size: 0.85rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--white); margin-bottom: 0.6rem;
+    }
+    .pillar p { font-size: 0.83rem; color: rgba(255,255,255,0.65); margin-bottom: 0; }
+
+    /* Audience */
+    .audience-wrap { margin-top: 0; }
+    .audience-wrap h3 {
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 900;
+      text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 0.4rem;
+    }
+    .audience-sub {
+      font-size: 0.88rem; color: var(--gray-mid); margin-bottom: 1.6rem; line-height: 1.7;
+    }
+
+    .aud-table { width: 100%; border-collapse: collapse; }
+    .aud-table th {
+      font-size: 0.58rem; font-weight: 800; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gray-mid); text-align: left;
+      padding: 0.7rem 1rem; border-bottom: 2px solid var(--red);
+    }
+    .aud-table td {
+      padding: 0.9rem 1rem; font-size: 0.83rem;
+      border-bottom: 1px solid var(--border); vertical-align: top;
+    }
+    .aud-table tr:hover td { background: rgba(199,11,0,0.04); }
+    .aud-role {
+      font-weight: 800; font-size: 0.78rem; color: var(--red);
+      text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap;
+    }
+
+    /* ══ FOOTER ══ */
+    footer {
+      background: var(--black);
+      border-top: 3px solid var(--red);
+      padding: 2.5rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 0.8rem; }
+    .footer-name {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--white);
+    }
+    .footer-name span { color: var(--red); }
+    .footer-center {
+      font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gray-mid); text-align: center;
+    }
+
+    /* ══ ANIMATIONS ══ */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 860px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links, .nav-incae { display: none; }
+      section { padding: 3.5rem 1.2rem; }
+      #portada { grid-template-columns: 1fr; }
+      .hero-right-panel { clip-path: none; padding: 3rem 1.5rem; }
+      .intro-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pillars { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-brand">
+    <svg class="nav-isologo" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M52 8 C68 8 72 22 72 36 C72 58 54 72 36 72 C20 72 8 60 8 44 L8 8 L24 8 L24 44 C24 51 29 58 36 58 C46 58 56 50 56 36 L56 8 Z" fill="white"/>
+      <ellipse cx="32" cy="42" rx="10" ry="6" fill="#C70B00"/>
+    </svg>
+    <div class="nav-wordmark">
+      <div class="nav-unexus"><span>U</span>NEXUS</div>
+      <div class="nav-sub">by Unidos Mayoreo</div>
+    </div>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#portada">Inicio</a></li>
+    <li><a href="#introduccion">Introducción</a></li>
+    <li><a href="#cierre">IA &amp; Audiencia</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="nav-incae">INCAE · 2026</div>
+    <div class="nav-badge">Entrega 01</div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════ PORTADA ══════════════════ -->
+<section id="portada" style="padding:0;">
+  <div class="hero-left-panel">
+    <div class="hero-eyebrow">Portafolio · Digital Business Intelligence</div>
+
+    <h1>
+      <span class="u">U</span>NEXUS
+      <span class="nexus" style="font-size:clamp(1.4rem,3vw,2.4rem);font-weight:600;letter-spacing:0.04em;opacity:0.45;">
+        by Unidos Mayoreo
+      </span>
+    </h1>
+
+    <p class="hero-desc">
+      Inteligencia Artificial aplicada a la gestión de inventarios en una empresa distribuidora —
+      conectando el WMS y ERP existentes con una capa de inteligencia adaptable a las necesidades
+      reales del negocio.
+    </p>
+
+    <a class="hero-cta" href="#introduccion">Ver portafolio</a>
+  </div>
+
+  <div class="hero-right-panel">
+    <svg class="hero-u-deco" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M52 8 C68 8 72 22 72 36 C72 58 54 72 36 72 C20 72 8 60 8 44 L8 8 L24 8 L24 44 C24 51 29 58 36 58 C46 58 56 50 56 36 L56 8 Z" fill="white"/>
+      <ellipse cx="32" cy="42" rx="10" ry="6" fill="white"/>
+    </svg>
+
+    <div class="hero-meta-stack">
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Autor</div>
+        <div class="hero-meta-value">Augusto Losilla</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Curso</div>
+        <div class="hero-meta-value">Digital Business Intelligence</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Profesores</div>
+        <div class="hero-meta-value">Prof. Juan Carlos Barahona<br>Prof. Diego Murillo</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Institución · Período</div>
+        <div class="hero-meta-value">INCAE Business School · 2026</div>
+      </div>
+    </div>
+
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <span class="hero-stat-num">01</span>
+        <div class="hero-stat-label">Entrega actual</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">04</span>
+        <div class="hero-stat-label">Data products</div>
+      </div>
+    </div>
+
+    <div class="systems-row">
+      <div class="sys-pill">WMS</div>
+      <div class="sys-pill">ERP</div>
+      <div class="sys-pill">IA</div>
+    </div>
+
+    <blockquote style="margin-top:2rem;font-size:0.82rem;font-style:italic;color:rgba(255,255,255,0.6);border-left:2px solid rgba(255,255,255,0.3);padding-left:1rem;max-width:340px;">
+      "La transformación digital no reemplaza lo que ha funcionado — lo lleva al siguiente nivel
+      con datos, criterio y visión."
+    </blockquote>
+  </div>
+</section>
+
+
+<!-- ══════════════════ INTRODUCCIÓN ══════════════════ -->
+<section id="introduccion">
+  <div class="section-inner">
+    <div class="section-eyebrow">01 — Introducción</div>
+    <h2>El origen<br>de este portafolio</h2>
+    <p class="h2-sub">
+      Dónde estoy parado, qué problema estoy resolviendo y por qué este momento importa
+      para Unidos Mayoreo.
+    </p>
+
+    <div class="intro-layout reveal">
+      <div class="intro-text">
+        <p>
+          Este portafolio nace en la intersección de dos realidades que vivo de forma simultánea:
+          la de estudiante del programa Digital Business Intelligence en INCAE y la de un actor
+          estratégico dentro de <strong>Unidos Mayoreo</strong>, empresa familiar de distribución
+          mayorista ferretera en Costa Rica con más de 25 años de trayectoria.
+        </p>
+
+        <div class="role-banner">
+          <div class="role-banner-label">⬡ Mi rol dentro de Unidos Mayoreo</div>
+          <p>
+            Mi función no es operativa en el sentido tradicional. Actúo como <strong>nexo entre
+            el modelo de negocio familiar actual y un modelo que preserve los valores y la
+            estructura familiar, pero que opere con los estándares de una empresa formal</strong>:
+            procesos documentados, políticas claras, procedimientos estandarizados y una visión
+            de crecimiento corporativo sostenible. UNexus es el nombre que le doy a este proyecto
+            porque refleja exactamente eso — ser el punto de unión entre ambos mundos.
+          </p>
+        </div>
+
+        <p>
+          Unidos Mayoreo cuenta con sistemas de revisión y recolección de datos de inventario —
+          un <strong>WMS</strong> y un <strong>ERP</strong> — que han respondido
+          satisfactoriamente a las necesidades históricas de la operación. Sin embargo, el
+          crecimiento del negocio ha generado preguntas más complejas que estos sistemas, en su
+          estado actual, no están diseñados para responder con la granularidad que ahora requerimos.
+        </p>
+        <p>
+          Control preciso de merma, detección temprana de hurto, optimización del uso de espacios
+          físicos, eficiencia en la rotación de producto y visibilidad en tiempo real del estado
+          del inventario son áreas críticas que hoy se nos dificulta medir con el detalle necesario.
+        </p>
+
+        <div class="highlight-box">
+          <p>
+            La hipótesis de este portafolio es que las <strong>herramientas de inteligencia
+            artificial</strong>, integradas con los datos que ya generan nuestro WMS y ERP,
+            pueden extender las capacidades de estos sistemas para atender las necesidades actuales
+            y futuras — sin reemplazar lo que ya funciona, sino
+            <strong>amplificándolo y tropicalizándolo a la realidad específica de Unidos Mayoreo</strong>.
+          </p>
+        </div>
+
+        <p>
+          Cada data product entregado en el curso es un componente funcional de un sistema mayor:
+          un dashboard que permita a la gerencia, al equipo de bodega y a la dirección estratégica
+          tomar decisiones con información confiable, oportuna y directamente conectada a la
+          fuente principal de datos.
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">#Unidos-Mayoreo</span>
+          <span class="tag">#distribución-CR</span>
+          <span class="tag">#WMS-integración</span>
+          <span class="tag">#ERP-integración</span>
+          <span class="tag">#data-products</span>
+          <span class="tag">#IA-aplicada</span>
+          <span class="tag">#transformación-corporativa</span>
+        </div>
+      </div>
+
+      <div class="info-stack">
+        <div class="info-card">
+          <div class="info-card-label">Empresa</div>
+          <div class="info-card-value">Unidos Mayoreo — Distribución Mayorista Ferretera, Costa Rica</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Trayectoria</div>
+          <div class="info-card-value">Más de 25 años en el sector, cobertura nacional frontera a frontera</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Rol estratégico del autor</div>
+          <div class="info-card-value">Nexo entre el modelo familiar tradicional y una estructura corporativa formal con procesos, políticas y crecimiento sostenible</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Área de enfoque</div>
+          <div class="info-card-value">Gestión de inventarios: resguardo del producto, rotación eficiente, uso de espacios, merma y hurto</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Sistemas existentes</div>
+          <div class="info-card-value">WMS (Warehouse Management System) + ERP (Enterprise Resource Planning)</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Limitación identificada</div>
+          <div class="info-card-value">Sistemas útiles pero con capacidad de desarrollo limitada, sin tropicalización a necesidades específicas sin depender del proveedor</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Resultado esperado</div>
+          <div class="info-card-value">Dashboard operativo integrado a datos reales de WMS/ERP, adaptable conforme crece el negocio</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ PILLARS + AUDIENCIA ══════════════════ -->
+<section id="cierre">
+  <div class="section-inner">
+
+    <!-- PILLARS -->
+    <div class="reveal">
+      <div class="section-eyebrow">02 — Propuesta de valor</div>
+      <p class="pillars-label">Lo que la IA hace que los<br>sistemas actuales no hacen</p>
+      <p class="pillars-sub">
+        Tres capacidades que justifican construir una capa de inteligencia sobre el WMS y el ERP
+        de Unidos Mayoreo — extendiéndolos en lugar de reemplazarlos.
+      </p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <div class="pillar-title">Predecir</div>
+          <p>
+            Anticipar quiebre de stock, picos de demanda o acumulación de inventario muerto
+            antes de que representen un costo operativo o financiero para el negocio.
+          </p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <div class="pillar-title">Detectar anomalías</div>
+          <p>
+            Identificar patrones inusuales en movimientos de inventario que puedan señalar
+            merma, hurto o errores de proceso no visibles en los reportes estándar del WMS o ERP.
+          </p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <div class="pillar-title">Adaptar y escalar</div>
+          <p>
+            Ajustar los modelos a las necesidades específicas de Unidos Mayoreo conforme el
+            negocio crece — sin depender del proveedor del sistema para cada nueva capacidad requerida.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- AUDIENCIA -->
+    <div class="audience-wrap reveal">
+      <div class="section-eyebrow">03 — Audiencia</div>
+      <h3>¿A quién va<br>dirigido UNexus?</h3>
+      <p class="audience-sub">
+        El portafolio habla simultáneamente en lenguaje académico y empresarial,
+        atendiendo a múltiples audiencias con un mismo sistema de información.
+      </p>
+
+      <table class="aud-table">
+        <thead>
+          <tr>
+            <th>Audiencia</th>
+            <th>¿Qué buscan?</th>
+            <th>Cómo se atiende</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="aud-role">Equipo académico · INCAE</span></td>
+            <td>Rigor metodológico, aplicación de IA, progresión coherente por entrega</td>
+            <td>Estructura documentada, justificación técnica, trazabilidad del proceso de aprendizaje</td>
+          </tr>
+          <tr>
+            <td><span class="aud-role">Gerencia · Unidos Mayoreo</span></td>
+            <td>Aplicabilidad real, retorno del tiempo invertido, impacto medible en la operación</td>
+            <td>Data products conectados a datos reales de WMS/ERP con KPIs de impacto financiero directo</td>
+          </tr>
+          <tr>
+            <td><span class="aud-role">Equipo de bodega y operaciones</span></td>
+            <td>Herramientas simples con alertas claras y accionables en el día a día</td>
+            <td>Dashboards con semáforos visuales, lenguaje cotidiano, sin interpretación técnica</td>
+          </tr>
+          <tr>
+            <td><span class="aud-role">Dirección estratégica</span></td>
+            <td>Base analítica para decisiones sobre formalización corporativa e inversión</td>
+            <td>Tendencias, benchmarks de eficiencia y análisis prospectivos del inventario</td>
+          </tr>
+          <tr>
+            <td><span class="aud-role">Comunidad profesional · LATAM</span></td>
+            <td>Caso de estudio replicable para otras PYMES distribuidoras de la región</td>
+            <td>Metodología documentada, enfoque adaptable a distintos contextos de distribución familiar</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg width="28" height="28" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M52 8 C68 8 72 22 72 36 C72 58 54 72 36 72 C20 72 8 60 8 44 L8 8 L24 8 L24 44 C24 51 29 58 36 58 C46 58 56 50 56 36 L56 8 Z" fill="white"/>
+        <ellipse cx="32" cy="42" rx="10" ry="6" fill="#C70B00"/>
+      </svg>
+      <div>
+        <div class="footer-name"><span>U</span>NEXUS · Unidos Mayoreo</div>
+        <div style="font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-mid);margin-top:2px;">
+          Portafolio de Transformación Digital · Entrega 01
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-center">
+      Digital Business Intelligence · INCAE Business School · 2026
+    </div>
+
+    <div style="text-align:right;">
+      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">
+        Augusto Losilla
+      </div>
+      <div style="font-size:0.58rem;color:var(--gray-mid);margin-top:3px;letter-spacing:0.06em;">
+        Prof. Juan Carlos Barahona · Prof. Diego Murillo
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(r => io.observe(r));
+</script>
+
+</body>
+</html>
